@@ -8,6 +8,7 @@ import infoScreen from './screens/info';
 import webviewScreen from './screens/webview';
 import InfoPoliticas from './screens/info_politicas';
 import Liberalismo from './screens/liberalismo';
+import detallesLiberalismo from './screens/detallesLiberalismo';
 
 const styles = StyleSheet.create({
   headerTitle: {
@@ -47,6 +48,10 @@ webviewScreen.navigationOptions = () => {
     headerShown: false,
   }
 }
+
+
+
+
 
 CharactersScreen.navigationOptions = ( { navigation } ) => {
   return {
@@ -92,6 +97,9 @@ const AppNavigator = createStackNavigator({
   },
   Liberalismo: {
     screen: Liberalismo
+  },
+  detallesLiberalismo: {
+    screen: detallesLiberalismo
   }
 }, 
 {
