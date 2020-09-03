@@ -1,12 +1,26 @@
 {
-  "name": "LecturaLiberal",
-  "displayName": "LecturaLiberal",
   "expo": {
     "name": "LecturaLiberal",
     "slug": "LecturaLiberal",
     "version": "1.0.0",
+    "orientation": "portrait",
+    "icon": "./assets/torchcrack.png",
+    "splash": {
+      "image": "./assets/torchcrack3.png",
+      "resizeMode": "contain",
+      "backgroundColor": "#eff400"
+    },
+    "updates": {
+      "fallbackToCacheTimeout": 0
+    },
     "assetBundlePatterns": [
       "**/*"
-    ]
+    ],
+    "ios": {
+      "supportsTablet": true
+    },
+    "web": {
+      "favicon": "./assets/favicon.png"
+    }
   }
 }
