@@ -129,6 +129,15 @@ const InfoPoliticas = ({ navigation }) => {
 
     const [modalPoliticas, setModalPoliticas] = useState(false)
 
+    const DATA_POLITICAS = {
+        privacidad: {
+            link: 'https://drive.google.com/file/d/13vZnknWibOMj2Zm3R-T66qC8oKJIQAli/view?usp=sharing'
+        },
+        terminos: {
+           link: 'https://drive.google.com/file/d/1qTNWwYXs49GHe4ndJVNxfv0U49ToRzMI/view?usp=sharing'
+        }
+    }
+
     return(
         <View style={styles.container}>
             <View style={styles.buttonContainer}>
@@ -182,7 +191,7 @@ const InfoPoliticas = ({ navigation }) => {
                         style={styles.policies}
                         activeOpacity={0.6}
                         underlayColor="#DDDDDD" 
-                        onPress={() => {setModalPoliticas(!modalPoliticas)}}
+                        onPress={() => {navigation.navigate('documentos', {link: DATA_POLITICAS.terminos.link}),setModalPoliticas(!modalPoliticas)}}
                         >
                             <Text style={styles.modalTextButton} >TÉRMINOS & CONDICIONES</Text>
                         </TouchableHighlight>
@@ -190,7 +199,7 @@ const InfoPoliticas = ({ navigation }) => {
                         style={styles.policies}
                         activeOpacity={0.6}
                         underlayColor="#DDDDDD" 
-                        onPress={() => {setModalPoliticas(!modalPoliticas)}}
+                        onPress={() => {navigation.navigate('documentos', {link: DATA_POLITICAS.privacidad.link}, setModalPoliticas(!modalPoliticas))}}
                         >
                             <Text style={styles.modalTextButton} >POLÍTICAS DE PRIVACIDAD</Text>
                         </TouchableHighlight>

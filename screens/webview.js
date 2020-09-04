@@ -5,8 +5,12 @@ import { WebView } from 'react-native-webview';
 const styles = StyleSheet.create({
     container: {
         width: '100%',
-        height: '90%',
-        marginTop: '10%'
+        height: '100%',
+    },
+    web: {
+        width: '100%',
+        height:'100%',
+        
     }
 }) 
     
@@ -17,7 +21,7 @@ export default( { navigation }) => {
     return(
         <View style={styles.container} >
             <WebView
-            style={styles.container}
+            style={styles.web}
             source={{ uri: link }} 
             />
         </View>
