@@ -1,6 +1,7 @@
 import React, {useEffect, useState} from 'react';
 import { StyleSheet, View, Text, Modal, Image, TouchableHighlight} from 'react-native';
 import normalize from 'react-native-normalize';
+import withPreventDoubleClick from '../preventdoubletap';
 
 
 
@@ -141,7 +142,7 @@ const styles = StyleSheet.create({
         alignSelf: 'center',
       }, 
       center: {
-        height: '100%',
+        height: '80%',
         flex: 1,
         alignItems: 'center',
         justifyContent: 'center',
@@ -151,7 +152,7 @@ const styles = StyleSheet.create({
   });
   
   
-    
+    const ButtonPrevent = withPreventDoubleClick(TouchableHighlight)
   
   export default ({ navigation }) => {
     
@@ -172,7 +173,7 @@ const styles = StyleSheet.create({
         <View style={styles.principalContainer}>
             {image}
             <View style={styles.optionsContainer}>
-                <TouchableHighlight 
+                <ButtonPrevent 
                 style={styles.iconsButton}
                 activeOpacity={0.6}
                 underlayColor={'#ccc'}
@@ -188,8 +189,8 @@ const styles = StyleSheet.create({
                     
                     
                     
-                </TouchableHighlight>
-                <TouchableHighlight
+                </ButtonPrevent>
+                <ButtonPrevent
                 style={styles.iconsButton}
                 activeOpacity={0.6}
                 underlayColor={'#ccc'}
@@ -204,8 +205,8 @@ const styles = StyleSheet.create({
                     
                     
                 
-                </TouchableHighlight>
-                <TouchableHighlight
+                </ButtonPrevent>
+                <ButtonPrevent
                 style={styles.iconsButton}
                 activeOpacity={0.6}
                 underlayColor={'#ccc'}
@@ -220,7 +221,7 @@ const styles = StyleSheet.create({
                     
                     
                     
-                </TouchableHighlight>
+                </ButtonPrevent>
             </View>
             <Modal 
             animationType='fade'

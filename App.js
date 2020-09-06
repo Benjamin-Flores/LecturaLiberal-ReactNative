@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-import { Image, StyleSheet,Button, Text, View, TouchableHighlight} from 'react-native';
+import { Image, StyleSheet,Share, View, TouchableHighlight} from 'react-native';
 import { createAppContainer } from 'react-navigation';
 import { createStackNavigator, TransitionPresets } from 'react-navigation-stack';
 import CharactersScreen from './screens/characters';
@@ -10,6 +10,8 @@ import InfoPoliticas from './screens/info_politicas';
 import Liberalismo from './screens/liberalismo';
 import detallesLiberalismo from './screens/detallesLiberalismo';
 import documentos from './screens/documentos';
+import acercadelaApp from './screens/acerdadelaApp';
+import withPreventDoubleClick from './preventdoubletap';
 
 const styles = StyleSheet.create({
   headerTitle: {
@@ -51,6 +53,12 @@ webviewScreen.navigationOptions = () => {
   }
 }
 
+documentos.navigationOptions = () => {
+  return {
+    headerShown: false,
+  }
+}
+
 
 
 
@@ -59,14 +67,14 @@ CharactersScreen.navigationOptions = ( { navigation } ) => {
   return {
     headerRight: () =>
     <View style={styles.containerHeaderRight}>
-      <TouchableHighlight
+      <ButtonPrevent
       style={styles.iconShare}
       activeOpacity={0.6}
       underlayColor={'#eff400'}
-      onPress={() =>{}}
+      onPress={() =>{onShare()}}
       >
         <Image style={styles.headerIcons} source={require('./assets/shareicon.png')} />
-      </TouchableHighlight>
+      </ButtonPrevent>
      <TouchableHighlight
      style={styles.iconInfo}
      activeOpacity={0.6}
@@ -81,6 +89,30 @@ CharactersScreen.navigationOptions = ( { navigation } ) => {
     
   }
 }
+
+const ButtonPrevent = withPreventDoubleClick(TouchableHighlight)
+
+
+const onShare = async () => {
+try {
+  const result = await Share.share({
+    message:
+      'Descarga Lectura Liberal, aplicación donde encontrarás distintos autores de la corriente filosófica liberal.',
+  });
+  if (result.action === Share.sharedAction) {
+    if (result.activityType) {
+      // shared with activity type of result.activityType
+    } else {
+      // shared
+    }
+  } else if (result.action === Share.dismissedAction) {
+    // dismissed
+  }
+} catch (error) {
+  alert(error.message);
+}
+};
+
 
 const AppNavigator = createStackNavigator({
   
@@ -105,6 +137,9 @@ const AppNavigator = createStackNavigator({
   },
   documentos: {
     screen: documentos
+  },
+  acercadelaApp: {
+    screen: acercadelaApp
   }
 }, 
 {

@@ -1,6 +1,7 @@
 import React, { useState } from 'react';
 import { Text, View, StyleSheet, TouchableHighlight, Image, Modal} from 'react-native';
 import normalize from 'react-native-normalize';
+import withPreventDoubleClick from '../preventdoubletap';
 
 const styles = StyleSheet.create({
     container: {
@@ -125,6 +126,10 @@ const styles = StyleSheet.create({
 
 })
 
+
+
+const ButtonPrevent = withPreventDoubleClick(TouchableHighlight)
+
 const InfoPoliticas = ({ navigation }) => {
 
     const [modalPoliticas, setModalPoliticas] = useState(false)
@@ -141,7 +146,7 @@ const InfoPoliticas = ({ navigation }) => {
     return(
         <View style={styles.container}>
             <View style={styles.buttonContainer}>
-                <TouchableHighlight
+                <ButtonPrevent
                 style={styles.buttons}
                 activeOpacity={0.6}
                 underlayColor={'#ccc'}
@@ -151,10 +156,10 @@ const InfoPoliticas = ({ navigation }) => {
                 >
                     
                     <Text style={styles.text}><Image style={styles.antorcha} source={require('../assets/antorcha.png')}/>  ¿Qué es el Liberalismo?</Text>
-                </TouchableHighlight>
+                </ButtonPrevent>
             </View>
             <View style={styles.buttonContainer}>  
-                <TouchableHighlight
+                <ButtonPrevent
                 style={styles.buttons}
                 activeOpacity={0.6}
                 underlayColor={'#ccc'}
@@ -163,19 +168,19 @@ const InfoPoliticas = ({ navigation }) => {
                 }}
                 >
                     <Text style={styles.text}><Image style={styles.antorcha} source={require('../assets/informacion.png')}/>  Políticas de la Aplicación</Text>
-                </TouchableHighlight>
+                </ButtonPrevent>
             </View>
             <View style={styles.buttonContainer}>
-                <TouchableHighlight
+                <ButtonPrevent
                 style={styles.buttons}
                 activeOpacity={0.6}
                 underlayColor={'#ccc'}
                 onPress={() =>{
-                    alert('hola')
+                    navigation.navigate('acercadelaApp')
                 }}
                 >
                     <Text style={styles.text}><Image style={styles.antorcha} source={require('../assets/torchcrack.png')}/>  Acerca de la Aplicación</Text>
-                </TouchableHighlight>
+                </ButtonPrevent>
             </View>
             <Modal 
             animationType='fade'
@@ -187,31 +192,31 @@ const InfoPoliticas = ({ navigation }) => {
                 <View style={styles.modalContent}>
                   <Text style={styles.modalText}>A continuación puedes leer las políticas de nuestra aplicación si lo deseas, están en Inglés para mayor formalidad.</Text>
                     <View style={styles.politicas}>
-                        <TouchableHighlight 
+                        <ButtonPrevent
                         style={styles.policies}
                         activeOpacity={0.6}
                         underlayColor="#DDDDDD" 
                         onPress={() => {navigation.navigate('documentos', {link: DATA_POLITICAS.terminos.link}),setModalPoliticas(!modalPoliticas)}}
                         >
                             <Text style={styles.modalTextButton} >TÉRMINOS & CONDICIONES</Text>
-                        </TouchableHighlight>
-                        <TouchableHighlight 
+                        </ButtonPrevent>
+                        <ButtonPrevent
                         style={styles.policies}
                         activeOpacity={0.6}
                         underlayColor="#DDDDDD" 
                         onPress={() => {navigation.navigate('documentos', {link: DATA_POLITICAS.privacidad.link}, setModalPoliticas(!modalPoliticas))}}
                         >
                             <Text style={styles.modalTextButton} >POLÍTICAS DE PRIVACIDAD</Text>
-                        </TouchableHighlight>
+                        </ButtonPrevent>
                     </View>
-                    <TouchableHighlight 
+                    <ButtonPrevent 
                     style={styles.modalButtonBio}
                     activeOpacity={0.6}
                     underlayColor="#DDDDDD" 
                     onPress={() => {setModalPoliticas(!modalPoliticas)}}
                     >
                       <Text style={styles.modalTextButton} >CERRAR</Text>
-                    </TouchableHighlight>
+                    </ButtonPrevent>
                 </View>
               </View>
             </Modal>
